@@ -1,10 +1,10 @@
 ---
 
-logstash_apt_repository: "{{logstash_repo_baseurl}}/apt"
+logstash_apt_repository: "{{ logstash_repo_baseurl }}/apt"
 
-logstash_package: "logstash=1:{{logstash_version}}-1"
+logstash_package: "logstash=1:{{ logstash_version }}-1"
 
-logstash_package_url: "{{logstash_package_baseurl}}/{{logstash_package_name}}-{{logstash_version}}.deb"
+logstash_package_url: "{{ logstash_package_baseurl }}/{{ logstash_package_name }}-{{ logstash_version }}.deb"
 
 # default config dir (defined by the package)
 #  Changing this will have no effect, as this is just a way to

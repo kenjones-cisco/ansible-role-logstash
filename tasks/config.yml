@@ -1,9 +1,17 @@
 ---
 
+- name: Create Logstash configuration directory if not found
+  file:
+    path: "{{ logstash_conf_dir }}"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
 - name: Logstash Daemon Configuration
   template:
     src: etc/logstash/logstash.yml.j2
-    dest: "{{logstash_conf_prefix}}/logstash.yml"
+    dest: "{{ logstash_conf_prefix }}/logstash.yml"
     owner: root
     group: root
     mode: 0644
@@ -22,7 +30,7 @@
 - name: Logstash JVM options
   template:
     src: etc/logstash/jvm.options.j2
-    dest: "{{logstash_conf_prefix}}/jvm.options"
+    dest: "{{ logstash_conf_prefix }}/jvm.options"
     owner: root
     group: root
     mode: 0644

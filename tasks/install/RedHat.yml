@@ -5,8 +5,8 @@
 
     - name: Logstash Yum Repository (RedHat)
       copy:
-        dest: "/etc/yum.repos.d/logstash-{{logstash_version}}.repo"
-        content: "{{logstash_yum_config}}"
+        dest: "/etc/yum.repos.d/logstash-{{ logstash_version }}.repo"
+        content: "{{ logstash_yum_config }}"
         owner: "root"
         group: "root"
         mode: "0644"
@@ -14,7 +14,7 @@
     - name: Logstash packages (RedHat)
       yum:
         state: present
-        name: "{{logstash_package}}"
+        name: "{{ logstash_package }}"
         update_cache: true
 
   when: logstash_use_repo
@@ -24,13 +24,13 @@
 
     - name: Download Logstash RPM
       get_url:
-        url: "{{logstash_package_url}}"
-        dest: "/var/cache/yum/{{ansible_architecture}}/{{logstash_package_name}}-{{logstash_version}}.rpm"
+        url: "{{ logstash_package_url }}"
+        dest: "/var/cache/yum/{{ ansible_architecture }}/{{ logstash_package_name }}-{{ logstash_version }}.rpm"
 
     - name: Install Logstash from RPM
       yum:
         state: present
-        name: "/var/cache/yum/{{ansible_architecture}}/{{logstash_package_name}}-{{logstash_version}}.rpm"
+        name: "/var/cache/yum/{{ ansible_architecture }}/{{ logstash_package_name }}-{{ logstash_version }}.rpm"
       notify: logstash restart
 
   when: not logstash_use_repo

@@ -4,13 +4,13 @@
 #  The package repository is build upon major and minor versions
 #
 logstash_version: 6.5.1
-logstash_version_repo: "{{logstash_version|regex_replace('^([0-9]+)\\..*$', '\\1')}}.x"
+logstash_version_repo: "{{ logstash_version|regex_replace('^([0-9]+)\\..*$', '\\1') }}.x"
 
 logstash_baseurl: "https://artifacts.elastic.co"
-logstash_gpg_key: "{{logstash_baseurl}}/GPG-KEY-elasticsearch"
-logstash_repo_baseurl: "{{logstash_baseurl}}/packages/{{logstash_version_repo}}"
+logstash_gpg_key: "{{ logstash_baseurl }}/GPG-KEY-elasticsearch"
+logstash_repo_baseurl: "{{ logstash_baseurl }}/packages/{{ logstash_version_repo }}"
 logstash_package_name: logstash
-logstash_package_baseurl: "{{logstash_baseurl}}/downloads/logstash"
+logstash_package_baseurl: "{{ logstash_baseurl }}/downloads/logstash"
 
 logstash_use_repo: true
 
@@ -27,7 +27,7 @@ logstash_upgrade: false
 #
 logstash_install_dir: /usr/share/logstash
 logstash_conf_prefix: /etc/logstash
-logstash_conf_dir: "{{logstash_conf_prefix}}/conf.d"
+logstash_conf_dir: "{{ logstash_conf_prefix }}/conf.d"
 logstash_data_dir: /var/lib/logstash
 logstash_logs_dir: /var/log/logstash
 
@@ -39,8 +39,8 @@ logstash_jvm_mem: 512m
 # Logstash JVM
 #
 logstash_config_jvm_defaults: |
-  -Xms{{logstash_jvm_mem}}
-  -Xmx{{logstash_jvm_mem}}
+  -Xms{{ logstash_jvm_mem }}
+  -Xmx{{ logstash_jvm_mem }}
   -XX:+UseParNewGC
   -XX:+UseConcMarkSweepGC
   -XX:CMSInitiatingOccupancyFraction=75
@@ -50,15 +50,15 @@ logstash_config_jvm_defaults: |
   -Dfile.encoding=UTF-8
   -XX:+HeapDumpOnOutOfMemoryError
 
-logstash_config_jvm: "{{logstash_config_jvm_defaults}}"
+logstash_config_jvm: "{{ logstash_config_jvm_defaults }}"
 
 # Logstash daemon config
 #
 #  logstash_config_daemon_defaults: defaults for daemon (logstash.yml)
 logstash_config_daemon_defaults:
-  path.data: "{{logstash_data_dir}}"
+  path.data: "{{ logstash_data_dir }}"
   path.config: "{{ (logstash_pipelines is defined) | ternary('', logstash_conf_dir) }}"
-  path.logs: "{{logstash_logs_dir}}"
+  path.logs: "{{ logstash_logs_dir }}"
 
 #  logstash_config_daemon: dict where to specify additional daemon configs
 #  that will be merged through combine() with `logstash_config_daemon_defaults`

@@ -3,21 +3,24 @@
 - name: Install Logstash using repository
   block:
 
+    - name: Ensure dependency is installed (Debian)
+      apt: name=apt-transport-https state=present
+
     - name: Logstash APT repo key
       apt_key:
         state: present
-        url: "{{logstash_gpg_key}}"
+        url: "{{ logstash_gpg_key }}"
 
     - name: Logstash Repository (Debian)
       apt_repository:
         state: present
-        repo: "deb {{logstash_apt_repository}} stable main"
+        repo: "deb {{ logstash_apt_repository }} stable main"
         update_cache: true
 
     - name: Logstash packages (Debian)
       apt:
         state: "{{ (logstash_upgrade) | ternary('latest', 'present') }}"
-        name: "{{logstash_package}}"
+        name: "{{ logstash_package }}"
 
   when: logstash_use_repo
 
@@ -26,12 +29,12 @@
 
     - name: Download logstash DEB
       get_url:
-        url: "{{logstash_package_url}}"
-        dest: "/var/cache/apt/archives/{{logstash_package_name}}-{{logstash_version}}.deb"
+        url: "{{ logstash_package_url }}"
+        dest: "/var/cache/apt/archives/{{ logstash_package_name }}-{{ logstash_version }}.deb"
 
     - name: Install logstash from DEB
       apt:
-        deb: "/var/cache/apt/archives/{{logstash_package_name}}-{{logstash_version}}.deb"
+        deb: "/var/cache/apt/archives/{{ logstash_package_name }}-{{ logstash_version }}.deb"
         state: present
       notify: logstash restart
 

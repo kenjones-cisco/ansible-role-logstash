@@ -21,7 +21,7 @@ logstash_version: 6.5.1
 
 logstash_install_dir: /usr/share/logstash
 logstash_conf_prefix:  /etc/logstash
-logstash_conf_dir:    "{{logstash_conf_prefix}}/conf.d"
+logstash_conf_dir:    "{{ logstash_conf_prefix }}/conf.d"
 logstash_data_dir:    /var/lib/logstash
 
 logstash_plugins:
@@ -36,8 +36,8 @@ shipped by logstash
 logstash_jvm_mem: 1g
 
 logstash_config_jvm_defaults: |
-  -Xms{{logstash_jvm_mem}}
-  -Xmx{{logstash_jvm_mem}}
+  -Xms{{ logstash_jvm_mem }}
+  -Xmx{{ logstash_jvm_mem }}
   -XX:+UseParNewGC
   -XX:+UseConcMarkSweepGC
   -XX:CMSInitiatingOccupancyFraction=75
@@ -47,7 +47,7 @@ logstash_config_jvm_defaults: |
   -Dfile.encoding=UTF-8
   -XX:+HeapDumpOnOutOfMemoryError
 
-logstash_config_jvm: "{{logstash_config_jvm_defaults}}"
+logstash_config_jvm: "{{ logstash_config_jvm_defaults }}"
 ```
 
 The defaults for the daemon config (`logstash.yml`) are also based
@@ -57,9 +57,9 @@ are merged using the jinja2 filter `combine()`:
 
 ```
 logstash_config_daemon_defaults:
-  path.data: "{{logstash_data_dir}}"
-  path.config: "{{logstash_conf_dir}}"
-  path.logs: "{{logstash_logs_dir}}"
+  path.data: "{{ logstash_data_dir }}"
+  path.config: "{{ logstash_conf_dir }}"
+  path.logs: "{{ logstash_logs_dir }}"
 
 logstash_config_daemon: {}
 ```

@@ -49,8 +49,10 @@ env:
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
 
-before_install:
-  - "sudo pip install yamllint"
+install: true
+
+before_script:
+  - pip install yamllint
   - yamllint -c .yamllint .
   - "sudo docker pull ${distribution}:${version}"
   - "sudo docker build --no-cache --rm --file=tests/Dockerfile.${distribution}-${version} --tag=${distribution}-${version}:ansible tests"
