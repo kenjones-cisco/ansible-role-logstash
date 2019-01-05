@@ -51,7 +51,7 @@ notifications:
 
 before_install:
   - "sudo pip install yamllint"
-  - yamllint -c .yamllint.yml .
+  - yamllint -c .yamllint .
   - "sudo docker pull ${distribution}:${version}"
   - "sudo docker build --no-cache --rm --file=tests/Dockerfile.${distribution}-${version} --tag=${distribution}-${version}:ansible tests"
 
