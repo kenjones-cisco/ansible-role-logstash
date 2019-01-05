@@ -1,7 +1,0 @@
-# << Ansible generated file >>
-
-{% if logstash_filters != "" %}
-filter {
-  {{logstash_filters|indent(width = 2)}}
-}
-{% endif %}

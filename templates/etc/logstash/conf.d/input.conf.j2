@@ -1,8 +1,0 @@
-# << Ansible generated file >>
-
-{% if logstash_inputs != "" %}
-input {
-  {{logstash_inputs|indent(width = 2)}}
-}
-{% endif %}
-
