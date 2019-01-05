@@ -1,15 +1,15 @@
 # Ansible role for Logstash
 
-[![Build Status](https://travis-ci.org/torian/ansible-role-logstash.svg)](https://travis-ci.org/torian/ansible-role-logstash)
+[![Build Status](https://travis-ci.org/kenjones-cisco/ansible-role-logstash.svg?branch=master)](https://travis-ci.org/kenjones-cisco/ansible-role-logstash)
 
-This Ansible role installs [Logstash](https://www.elastic.co/products/logstash)
-through the official repository packages.
+This Ansible role installs [Logstash](https://www.elastic.co/products/logstash) through the official repository packages.
 
 ## Supported Platforms
   * EL / Centos (6 / 7)
   * Debian (Wheezy / Jessie)
-  * Ubuntu (Precise / Trusty)
+  * Ubuntu (Precise / Trusty / Xenial)
   * AMZ Linux
+
 
 ## Role Variables
 
@@ -17,9 +17,7 @@ The following role variables are defined in `defaults/main.yml`. For a
 detailed explanation about them you can take a look at the file.
 
 ```
-logstash_version: 5.6.4
-
-logstash_daemon_user: root
+logstash_version: 6.5.1
 
 logstash_install_dir: /usr/share/logstash
 logstash_conf_prefix:  /etc/logstash
@@ -219,7 +217,7 @@ logstash_configs:
 
 ### Installing additional plugins
 
-By default, and just as an example, the role installs two plugins:
+An example of how to specify plugins to install:
 
 ```
 logstash_plugins:
@@ -227,8 +225,6 @@ logstash_plugins:
   - logstash-output-s3
 ```
 
-If you don't want them, or need to specify different ones, the just override
-the default setting
 
 ### Logstash version upgrade
 
@@ -236,3 +232,8 @@ If you need to upgrade from a previous logstash version, the role can
 manage it. Specify an extra var `logstash_upgrade=True` and the package manager
 is going to install the latest available release that matches the major from
 `logstash_version`.
+
+
+## Original source
+
+Forked from [torian/ansible-role-logstash](https://github.com/torian/ansible-role-logstash)

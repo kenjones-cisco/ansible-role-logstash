@@ -2,49 +2,49 @@
 
 - name: Logstash Daemon Configuration
   template:
-    src:   etc/logstash/logstash.yml.j2
-    dest:  "{{logstash_conf_prefix}}/logstash.yml"
-    owner: "root"
-    group: "root"
-    mode:  "0644"
+    src: etc/logstash/logstash.yml.j2
+    dest: "{{logstash_conf_prefix}}/logstash.yml"
+    owner: root
+    group: root
+    mode: 0644
   notify: logstash restart
 
 - name: define pipelines in configuration file
   template:
-    src:   etc/logstash/pipelines.yml.j2
-    dest:  "{{ logstash_conf_prefix }}/pipelines.yml"
-    owner: "root"
-    group: "root"
-    mode:  "0644"
+    src: etc/logstash/pipelines.yml.j2
+    dest: "{{ logstash_conf_prefix }}/pipelines.yml"
+    owner: root
+    group: root
+    mode: 0644
   when: logstash_pipelines is defined
   notify: logstash restart
 
 - name: Logstash JVM options
   template:
-    src:   etc/logstash/jvm.options.j2
-    dest:  "{{logstash_conf_prefix}}/jvm.options"
-    owner: "root"
-    group: "root"
-    mode:  "0644"
+    src: etc/logstash/jvm.options.j2
+    dest: "{{logstash_conf_prefix}}/jvm.options"
+    owner: root
+    group: root
+    mode: 0644
   notify: logstash restart
 
 - name: create individual pipeline config directories
   file:
     state: directory
     dest: "{{ logstash_conf_prefix }}/pipeline_{{ item.name }}.d"
-    owner: "root"
-    group: "root"
-    mode: "0755"
+    owner: root
+    group: root
+    mode: 0755
   with_items: "{{ logstash_pipelines }}"
   when: logstash_pipelines is defined
 
 - name: create pipeline configuration files
   template:
-    src:  etc/logstash/conf.d/config.conf.j2
+    src: etc/logstash/conf.d/config.conf.j2
     dest: "{{ logstash_conf_prefix }}/pipeline_{{ item.pipeline }}.d/{{ item.name }}.conf"
-    owner: "root"
-    group: "root"
-    mode: "0644"
+    owner: root
+    group: root
+    mode: 0644
   notify: logstash restart
   when: item.pipeline is defined
   with_items: "{{ logstash_configs }}"
@@ -53,11 +53,11 @@
 
 - name: create default pipeline configuration files
   template:
-    src:  etc/logstash/conf.d/config.conf.j2
+    src: etc/logstash/conf.d/config.conf.j2
     dest: "{{ logstash_conf_dir }}/{{ item.name }}.conf"
-    owner: "root"
-    group: "root"
-    mode: "0644"
+    owner: root
+    group: root
+    mode: 0644
   notify: logstash restart
   when: item.pipeline is undefined
   with_items: "{{ logstash_configs }}"

@@ -12,8 +12,12 @@ logstash_yum_config: |
 
 logstash_package: "logstash-{{logstash_version}}"
 
-logstash_package_url: "{{logstash_package_baseurl}}/logstash-{{logstash_version}}.rpm"
+logstash_package_url: "{{logstash_package_baseurl}}/{{logstash_package_name}}-{{logstash_version}}.rpm"
 
+# default config dir (defined by the package)
+#  Changing this will have no effect, as this is just a way to
+#  refer to the default config directory without hardcoding things
+#
 logstash_defaults_cfg: /etc/sysconfig/logstash
 
 # vi:ts=2:sw=2:et:ft=yaml

@@ -3,13 +3,13 @@
 # Logstash version
 #  The package repository is build upon major and minor versions
 #
-logstash_version: 5.6.4
+logstash_version: 6.5.1
 logstash_version_repo: "{{logstash_version|regex_replace('^([0-9]+)\\..*$', '\\1')}}.x"
 
-logstash_gpg_key: https://artifacts.elastic.co/GPG-KEY-elasticsearch
-
 logstash_baseurl: "https://artifacts.elastic.co"
+logstash_gpg_key: "{{logstash_baseurl}}/GPG-KEY-elasticsearch"
 logstash_repo_baseurl: "{{logstash_baseurl}}/packages/{{logstash_version_repo}}"
+logstash_package_name: logstash
 logstash_package_baseurl: "{{logstash_baseurl}}/downloads/logstash"
 
 logstash_use_repo: true
@@ -21,25 +21,15 @@ logstash_use_repo: true
 #
 logstash_upgrade: false
 
-# Logstash user and group
-#  FIXME: Currently not in use
-#
-logstash_owner: logstash
-logstash_group: logstash
-
-# User that will run the service
-#
-logstash_daemon_user: root
-
 # Install dir (defined by the package)
 #  Changing this will have no effect, as this is just a way to
 #  refer to the installation directory without hardcoding things
 #
 logstash_install_dir: /usr/share/logstash
 logstash_conf_prefix: /etc/logstash
-logstash_conf_dir:    "{{logstash_conf_prefix}}/conf.d"
-logstash_data_dir:    /var/lib/logstash
-logstash_logs_dir:    /var/log/logstash
+logstash_conf_dir: "{{logstash_conf_prefix}}/conf.d"
+logstash_data_dir: /var/lib/logstash
+logstash_logs_dir: /var/log/logstash
 
 # Logstash JVM config
 #
@@ -85,7 +75,7 @@ logstash_config_daemon: {}
 #       codec => rubydebug
 #     }
 #
-logstash_inputs:  ''
+logstash_inputs: ''
 logstash_filters: ''
 logstash_outputs: ''
 
