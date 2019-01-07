@@ -35,4 +35,14 @@
 
   when: not logstash_use_repo
 
+# Workaround for known logstash issue 'Missing systemd scripts in 6.2.4 #9403'
+- name: Check status of systemd logstash.service
+  stat:
+    path: /etc/systemd/system/logstash.service
+  register: logstash_service_status
+
+- name: Create logstash service if it doesn't already exists
+  shell: "{{ logstash_install_dir }}/bin/system-install" "{{ logstash_conf_prefix }}/startup.options" systemd
+  when: logstash_service_status.stat.exists == false
+
 # vi:ts=2:sw=2:et:ft=yaml
