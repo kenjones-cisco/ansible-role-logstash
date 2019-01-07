@@ -11,7 +11,7 @@
       when: "ansible_os_family == 'RedHat'"
     - set_fact:
         java_packages:
-        - openjdk-8-jdk
+          - openjdk-8-jdk
       when: "ansible_os_family == 'Debian'"
   roles:
     - ansible-role-logstash
