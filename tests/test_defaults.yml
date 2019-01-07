@@ -1,10 +1,10 @@
 ---
 - hosts: localhost
-  remote_user: root
+  become: true
   tasks:
-    - name: installing repo for Java 8 in Ubuntu
-      apt_repository: repo='ppa:openjdk-r/ppa'
-      when: "ansible_os_family == 'Debian'"
+    # - name: installing repo for Java 8 in Ubuntu
+    #   apt_repository: repo='ppa:openjdk-r/ppa'
+    #   when: "ansible_os_family == 'Debian'"
     - name: set java version (RedHat)
       set_fact:
         java_packages:
@@ -17,7 +17,7 @@
       when: "ansible_os_family == 'Debian'"
 
 - hosts: localhost
-  remote_user: root
+  become: true
   roles:
     - ansible-role-logstash
 
