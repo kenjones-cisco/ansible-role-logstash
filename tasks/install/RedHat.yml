@@ -3,10 +3,15 @@
 - name: Install Logstash using repository
   block:
 
+    - name: Add Logstash GPG key.
+      rpm_key:
+        key: "{{ logstash_gpg_key }}"
+        state: present
+
     - name: Logstash Yum Repository (RedHat)
       template:
         src: logstash.repo.j2
-        dest: "/etc/yum.repos.d/logstash-{{ logstash_version }}.repo"
+        dest: /etc/yum.repos.d/logstash.repo
         owner: root
         group: root
         mode: 0644
