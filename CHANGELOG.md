@@ -1,5 +1,14 @@
 # Ansible Logstash role Changelog
 
+## 2019-01-07: 2.0.0
+
+  * Adds support for pipelines (@andyshinn)
+  * Adds support for OSS versions (@kenjones-cisco)
+  * Updates travis process (@mrlesmithjr)
+  * Declares dependency on Java
+  * Yaml Lint used to clean up role
+  * Removes legacy unused variables
+
 ## 2017-11-23: 1.2.0
 
   * Fixed issue that would make the role install the latest logstash version
