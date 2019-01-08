@@ -5,10 +5,13 @@
 This Ansible role installs [Logstash](https://www.elastic.co/products/logstash) through the official repository packages.
 
 ## Supported Platforms
-  * EL / Centos (6 / 7)
-  * Debian (Wheezy / Jessie)
-  * Ubuntu (Precise / Trusty / Xenial)
-  * AMZ Linux
+  * EL / Centos (7)
+  * Debian (Stretch)
+  * Ubuntu (Xenial / Bionic)
+
+
+## Dependencies
+  * geerlingguy.java
 
 
 ## Role Variables
