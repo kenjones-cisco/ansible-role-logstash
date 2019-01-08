@@ -22,8 +22,7 @@ galaxy_info:
     - name: Ubuntu
       versions:
         - bionic
-        - trusty
-        - vivid
+        # - trusty
         - xenial
     - name: Debian
       versions:
