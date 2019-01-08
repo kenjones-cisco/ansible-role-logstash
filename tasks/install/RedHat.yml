@@ -4,16 +4,16 @@
   block:
 
     - name: Logstash Yum Repository (RedHat)
-      copy:
+      template:
+        src: logstash_repo.j2
         dest: "/etc/yum.repos.d/logstash-{{ logstash_version }}.repo"
-        content: "{{ logstash_yum_config }}"
-        owner: "root"
-        group: "root"
-        mode: "0644"
+        owner: root
+        group: root
+        mode: 0644
 
     - name: Logstash packages (RedHat)
       yum:
-        state: present
+        state: "{{ (logstash_upgrade) | ternary('latest', 'present') }}"
         name: "{{ logstash_package }}"
         update_cache: true
 

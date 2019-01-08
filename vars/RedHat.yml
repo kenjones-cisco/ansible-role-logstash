@@ -2,13 +2,13 @@
 
 logstash_yum_repository: "{{ logstash_repo_baseurl }}/yum"
 
-logstash_yum_config: |
-  [logstash-{{ logstash_version_repo }}]
-  name=Logstash repository for {{ logstash_version_repo }} packages
-  baseurl={{ logstash_yum_repository }}
-  gpgcheck=1
-  gpgkey={{ logstash_gpg_key }}
-  enabled=1
+# logstash_yum_config: |
+#   [logstash-{{ logstash_version_repo }}]
+#   name=Logstash repository for {{ logstash_version_repo }} packages
+#   baseurl={{ logstash_yum_repository }}
+#   gpgcheck=1
+#   gpgkey={{ logstash_gpg_key }}
+#   enabled=1
 
 logstash_package: "logstash-{{ logstash_version }}"
 
